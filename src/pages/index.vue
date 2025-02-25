@@ -5,10 +5,8 @@ defineOptions({
 
 const name = ref('')
 
-const router = useRouter()
 function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
+  console.log(name.value)
 }
 </script>
 
@@ -25,7 +23,7 @@ function go() {
 
     <div class="py-4" />
 
-    <TheInput
+    <Input
       v-model="name"
       placeholder="What's your name?"
       autocomplete="false"
