@@ -2,12 +2,6 @@
 defineOptions({
   name: 'IndexPage',
 })
-
-const name = ref('')
-
-function go() {
-  console.log(name.value)
-}
 </script>
 
 <template>
@@ -23,23 +17,6 @@ function go() {
     <p class="flex items-center gap-2">
       <i class="font-semibold not-italic text-base">💡</i> Для указания нескольких меток для одной пары логин/пароль используйте разделитель ";"
     </p>
-
-    <Input
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-
-    <div>
-      <Button
-        :disabled="!name"
-        @click="go"
-      >
-        Click me
-      </Button>
-    </div>
-
     <AccountForm />
   </div>
 </template>

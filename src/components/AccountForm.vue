@@ -17,7 +17,7 @@ import { h } from 'vue'
 import * as z from 'zod'
 
 const formSchema = toTypedSchema(z.object({
-  username: z.string().min(2).max(50),
+  login: z.string().min(2).max(50),
 }))
 
 const { isFieldDirty, handleSubmit } = useForm({
@@ -26,7 +26,7 @@ const { isFieldDirty, handleSubmit } = useForm({
 
 const onSubmit = handleSubmit((values) => {
   toast({
-    title: 'You submitted the following values:',
+    title: 'You deleted the following account:',
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
   })
 })
@@ -34,9 +34,9 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
   <form class="w-2/3 space-y-6" @submit="onSubmit">
-    <FormField v-slot="{ componentField }" name="username" :validate-on-blur="!isFieldDirty">
+    <FormField v-slot="{ componentField }" name="login" :validate-on-blur="!isFieldDirty">
       <FormItem>
-        <FormLabel>Username</FormLabel>
+        <FormLabel>Login</FormLabel>
         <FormControl>
           <Input type="text" placeholder="shadcn" v-bind="componentField" />
         </FormControl>
