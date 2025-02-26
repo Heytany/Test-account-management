@@ -11,17 +11,18 @@ function go() {
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-items-center gap-1">
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu-collective/vitesse-lite" target="_blank">
-        Vitesse Lite
-      </a>
+  <div class="flex flex-col gap-3">
+    <div class="flex items-center gap-2">
+      <h1 class="text-xl font-bold">
+        Учетные записи
+      </h1>
+      <Button variant="outline" class="px-2">
+        <i class="font-semibold not-italic text-base">➕</i>
+      </Button>
+    </div>
+    <p class="flex items-center gap-2">
+      <i class="font-semibold not-italic text-base">💡</i> Для указания нескольких меток для одной пары логин/пароль используйте разделитель ";"
     </p>
-    <p>
-      <em class="text-sm">Opinionated Vite Starter Template</em>
-    </p>
-
-    <div class="py-4" />
 
     <Input
       v-model="name"
@@ -38,5 +39,7 @@ function go() {
         Click me
       </Button>
     </div>
+
+    <AccountForm />
   </div>
 </template>
