@@ -16,7 +16,12 @@ declare global {
     login: string
     password: string
     type: string
-    tags: Array<Tag>
+    tags: Array<Tag> | ''
+  }
+
+  interface TypeItem {
+    name: string
+    value: string
   }
 
   interface Tag {
@@ -31,6 +36,18 @@ export default {
         login: 'string',
         password: 'string',
         type: 'string',
+        tags: [{ text: 'odin' }],
+      },
+      {
+        login: 'string2',
+        password: 'string2',
+        type: 'string2',
+        tags: [{ text: 'odin' }],
+      },
+      {
+        login: 'string3',
+        password: 'string3',
+        type: 'string3',
         tags: [{ text: 'odin' }],
       },
     ],

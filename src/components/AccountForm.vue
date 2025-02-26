@@ -25,6 +25,9 @@ import * as z from 'zod'
 
 const props = withDefaults(defineProps<Props>(), {
   types: () => [{ name: 'Локальная', value: 'local' }, { name: 'LDAP', value: 'LDAP' }],
+  item: () => {
+    return { login: '', password: '', tags: '', type: '' }
+  },
 })
 
 const emit = defineEmits({
@@ -36,7 +39,8 @@ const emit = defineEmits({
 const savedType = 'LDAP'
 
 interface Props {
-  types?: Array<{ name: string, value: string }>
+  types?: Array<TypeItem>
+  item?: Account
 }
 
 const { toast } = useToast()
@@ -65,6 +69,9 @@ const zObjLDAP = z.object({
 
 const formSchema = toTypedSchema(zObj.or(zObjLDAP))
 
+const parsedData = formSchema.parse(props.item) // parsed successfully
+console.log(parsedData)
+
 const selectedType: Ref<string> = ref('')
 
 const { isFieldDirty, handleSubmit } = useForm({
@@ -80,7 +87,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <form class="w-1/4 space-y-4 px-3 py-3 rounded-lg border border-black-600" @submit="onSubmit">
+  <form class="space-y-4 px-3 pt-10 pb-3 rounded-lg border border-black-600" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="tags" :validate-on-blur="!isFieldDirty">
       <FormItem>
         <FormControl>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 export const useMainPageStore = defineStore('main-page', () => {
-  const account = ref(<Account>{})
+  const accounts = ref(Array<Account>)
 
   function initMainPage(this: any, dataObj: MainPage) {
     for (const key in dataObj) {
@@ -12,6 +12,6 @@ export const useMainPageStore = defineStore('main-page', () => {
 
   return {
     initMainPage,
-    account,
+    accounts,
   }
 })
