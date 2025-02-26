@@ -2,23 +2,64 @@
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { toast, Toaster } from '@/components/ui/toast'
+import { PasswordInput } from '@/components/ui/password-input'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { useToast } from '@/components/ui/toast/use-toast'
 
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { h } from 'vue'
 import * as z from 'zod'
 
-const formSchema = toTypedSchema(z.object({
-  login: z.string().min(2).max(50),
-}))
+const props = withDefaults(defineProps<Props>(), {
+  types: () => [{ name: 'Локальная', value: 'local' }, { name: 'LDAP', value: 'LDAP' }],
+})
+
+const savedType = 'LDAP'
+
+interface Props {
+  types?: Array<{ name: string, value: string }>
+}
+
+const { toast } = useToast()
+
+const zObj = z.object({
+  tags: z.string().min(3).max(50).optional(),
+  login: z.string({
+    required_error: 'Please fill out login field.',
+  }).min(3).max(100),
+  password: z.string({
+    required_error: 'Please fill out password field.',
+  }).min(3).max(100),
+  type: z.string({
+    required_error: 'Please select an type to display.',
+  }),
+})
+
+const zObjLDAP = z.object({
+  tags: z.string().min(3).max(50).optional(),
+  login: z.string({
+    required_error: 'Please fill out login field.',
+  }).min(3).max(100),
+  password: z.string().min(3).max(100).optional(),
+  type: z.literal(savedType),
+})
+
+const formSchema = toTypedSchema(zObj.or(zObjLDAP))
+
+const selectedType: Ref<string | number> = ref('')
 
 const { isFieldDirty, handleSubmit } = useForm({
   validationSchema: formSchema,
@@ -33,22 +74,55 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <form class="w-2/3 space-y-6" @submit="onSubmit">
-    <FormField v-slot="{ componentField }" name="login" :validate-on-blur="!isFieldDirty">
+  <form class="w-1/4 space-y-4 px-3 py-3 rounded-lg border border-black-600" @submit="onSubmit">
+    <FormField v-slot="{ componentField }" name="tags" :validate-on-blur="!isFieldDirty">
       <FormItem>
-        <FormLabel>Login</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="shadcn" v-bind="componentField" />
+          <Input type="text" placeholder="Tag list" v-bind="componentField" />
         </FormControl>
-        <FormDescription>
-          This is your public display name.
-        </FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
-    <Button type="submit">
+    <FormField v-slot="{ componentField }" name="type" :validate-on-blur="!isFieldDirty">
+      <FormItem>
+        <Select v-model="selectedType" v-bind="componentField">
+          <FormControl>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a type of account to display" />
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem v-for="(type, index) in props.types" :key="index" :value="type.value">
+                {{ type.name }}
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+    <FormField v-slot="{ componentField }" name="login" :validate-on-blur="!isFieldDirty">
+      <FormItem>
+        <FormControl>
+          <Input type="text" placeholder="Login" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+    <FormField v-if="selectedType !== savedType" v-slot="{ componentField }" name="password" :validate-on-blur="!isFieldDirty">
+      <FormItem>
+        <FormControl>
+          <PasswordInput type="password" placeholder="Password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+    <Button class="w-full" type="submit">
       Submit
     </Button>
+    <Button class="w-full" type="button">
+      Delete
+    </Button>
   </form>
-  <Toaster />
 </template>
