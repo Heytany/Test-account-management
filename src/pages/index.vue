@@ -10,10 +10,6 @@ const { toast } = useToast()
 const main = useMainPageStore()
 const isRenderNewAccAdding = ref(false)
 
-function deleteAccount(payload: string) {
-  console.log(payload)
-}
-
 function RenderNewAccAdding() {
   if (isRenderNewAccAdding.value) {
     toast({
@@ -40,14 +36,14 @@ function RenderNewAccAdding() {
       <i class="font-semibold not-italic text-base">💡</i> Для указания нескольких меток для одной пары логин/пароль используйте разделитель ";"
     </p>
 
-    <div class="flex flex-wrap gap-2">
-      <AccountForm v-for="(account, index) in main.accounts" :key="index" :item="account" class="w-1/4" @delete="deleteAccount" />
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3">
+      <AccountForm v-for="(account, index) in main.accounts" :key="index" :item="account" @delete="useMainPageStore().deleteAccount" />
 
-      <div v-if="isRenderNewAccAdding" class="relative w-1/4">
+      <div v-if="isRenderNewAccAdding" class="relative">
         <Button variant="outline" class="px-2 absolute top-0 right-0" @click="isRenderNewAccAdding = false">
           <i class="font-semibold not-italic text-base">➖</i>
         </Button>
-        <AccountForm @delete="deleteAccount" />
+        <AccountForm @delete="useMainPageStore().deleteAccount" @new="isRenderNewAccAdding = false" />
       </div>
     </div>
   </div>

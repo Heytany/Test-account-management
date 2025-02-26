@@ -13,10 +13,11 @@ declare global {
   }
 
   interface Account {
+    id?: string
     login: string
-    password: string
+    password: string | null
     type: string
-    tags: Array<Tag> | ''
+    tags: Array<Tag> | string
   }
 
   interface TypeItem {
@@ -33,21 +34,24 @@ export default {
   mainPage: {
     accounts: [
       {
+        id: 'a1',
         login: 'string',
         password: 'string',
-        type: 'string',
+        type: 'local',
         tags: [{ text: 'odin' }],
       },
       {
+        id: 'a2',
         login: 'string2',
-        password: 'string2',
-        type: 'string2',
-        tags: [{ text: 'odin' }],
+        password: null,
+        type: 'LDAP',
+        tags: [{ text: 'odin' }, { text: 'odin2' }],
       },
       {
+        id: 'a3',
         login: 'string3',
         password: 'string3',
-        type: 'string3',
+        type: 'local',
         tags: [{ text: 'odin' }],
       },
     ],

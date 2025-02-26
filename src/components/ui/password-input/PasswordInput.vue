@@ -18,6 +18,7 @@ const props = defineProps<
 
 const emit = defineEmits<{
   (e: 'update:modelValue', payload: string | number): void
+  (e: 'blur', payload: () => any | undefined): void
 }>()
 
 const modelValue = useVModel(props, 'modelValue', emit, {
