@@ -27,6 +27,9 @@ dependencies:
   lucide-vue-next:
     specifier: ^0.476.0
     version: 0.476.0(vue@3.5.13)
+  pinia:
+    specifier: ^3.0.1
+    version: 3.0.1(typescript@5.7.3)(vue@3.5.13)
   radix-vue:
     specifier: ^1.9.16
     version: 1.9.16(vue@3.5.13)
@@ -4511,6 +4514,20 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /pinia@3.0.1(typescript@5.7.3)(vue@3.5.13):
+    resolution: {integrity: sha512-WXglsDzztOTH6IfcJ99ltYZin2mY8XZCXujkYWVIJlBjqsP6ST7zw+Aarh63E1cDVYeyUcPCxPHzJpEOmzB6Wg==}
+    peerDependencies:
+      typescript: '>=4.4.4'
+      vue: ^2.7.0 || ^3.5.11
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 7.7.2
+      typescript: 5.7.3
+      vue: 3.5.13(typescript@5.7.3)
+    dev: false
 
   /pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}

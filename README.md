@@ -30,6 +30,8 @@
 
 - 💹 Base components from [Reka UI](https://www.shadcn-vue.com/)
 
+- 🍍 [State Management via Pinia](https://pinia.vuejs.org/)
+
 <br>
 
 See [Vitesse](https://github.com/antfu/vitesse) for full featureset.

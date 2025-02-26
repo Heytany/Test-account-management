@@ -1,7 +1,15 @@
 <script setup lang="ts" generic="T extends any, O extends any">
+import { useMainPageStore } from '@/stores/main'
+
 defineOptions({
   name: 'IndexPage',
 })
+
+function deleteAccount(payload: string) {
+  console.log(payload)
+}
+
+const main = useMainPageStore()
 </script>
 
 <template>
@@ -17,6 +25,8 @@ defineOptions({
     <p class="flex items-center gap-2">
       <i class="font-semibold not-italic text-base">💡</i> Для указания нескольких меток для одной пары логин/пароль используйте разделитель ";"
     </p>
-    <AccountForm />
+    <AccountForm @delete="deleteAccount" />
+
+    <pre>{{ main }}</pre>
   </div>
 </template>

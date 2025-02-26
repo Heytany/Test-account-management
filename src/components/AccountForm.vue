@@ -27,6 +27,12 @@ const props = withDefaults(defineProps<Props>(), {
   types: () => [{ name: 'Локальная', value: 'local' }, { name: 'LDAP', value: 'LDAP' }],
 })
 
+const emit = defineEmits({
+  delete(payload) {
+    return payload
+  },
+})
+
 const savedType = 'LDAP'
 
 interface Props {
@@ -59,7 +65,7 @@ const zObjLDAP = z.object({
 
 const formSchema = toTypedSchema(zObj.or(zObjLDAP))
 
-const selectedType: Ref<string | number> = ref('')
+const selectedType: Ref<string> = ref('')
 
 const { isFieldDirty, handleSubmit } = useForm({
   validationSchema: formSchema,
@@ -121,7 +127,7 @@ const onSubmit = handleSubmit((values) => {
     <Button class="w-full" type="submit">
       Submit
     </Button>
-    <Button class="w-full" type="button">
+    <Button class="w-full" type="button" @click="emit('delete', 'lox')">
       Delete
     </Button>
   </form>
