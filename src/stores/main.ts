@@ -1,8 +1,7 @@
-import { useToast } from '@/components/ui/toast/use-toast'
 import { defineStore } from 'pinia'
 
 export const useMainPageStore = defineStore('main-page', () => {
-  const accounts = ref(Array<Account>)
+  const accounts = ref<Account[]>([])
   const { toast } = useToast()
 
   function initMainPage(this: any, dataObj: MainPage) {

@@ -1,5 +1,3 @@
-import sampleData from '@/data/sampleData'
-import { useMainPageStore } from '@/stores/main'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'

@@ -1,7 +1,4 @@
 <script setup lang="ts" generic="T extends any, O extends any">
-import { useToast } from '@/components/ui/toast/use-toast'
-import { useMainPageStore } from '@/stores/main'
-
 defineOptions({
   name: 'IndexPage',
 })

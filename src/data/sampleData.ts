@@ -9,7 +9,7 @@ declare global {
   }
 
   interface MainPage {
-    accounts: Array<Account>
+    accounts: Account[]
   }
 
   interface Account {
@@ -17,7 +17,7 @@ declare global {
     login: string
     password: string | null
     type: string
-    tags: Array<Tag> | string
+    tags: Tag[] | string
   }
 
   interface TypeItem {
@@ -35,24 +35,31 @@ export default {
     accounts: [
       {
         id: 'a1',
-        login: 'string',
-        password: 'string',
+        login: 'IgorHunterXXX',
+        password: 'qwerty',
         type: 'local',
         tags: [{ text: 'odin' }],
       },
       {
         id: 'a2',
-        login: 'string2',
+        login: 'Darius',
         password: null,
         type: 'LDAP',
-        tags: [{ text: 'odin' }, { text: 'odin2' }],
+        tags: [{ text: 'odin' }, { text: 'dva' }],
       },
       {
         id: 'a3',
-        login: 'string3',
-        password: 'string3',
+        login: 'Garen',
+        password: 'Spin2Win',
         type: 'local',
-        tags: [{ text: 'odin' }],
+        tags: [{ text: 'tri' }, { text: 'dva' }, { text: 'odin' }],
+      },
+      {
+        id: 'a4',
+        login: 'Katarina',
+        password: 'R2Win',
+        type: 'local',
+        tags: '',
       },
     ],
   },

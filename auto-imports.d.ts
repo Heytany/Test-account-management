@@ -6,9 +6,41 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const Button: typeof import('./src/components/ui/button/index')['Button']
   const EffectScope: typeof import('vue')['EffectScope']
+  const FORM_ITEM_INJECTION_KEY: typeof import('./src/components/ui/form/injectionKeys')['FORM_ITEM_INJECTION_KEY']
+  const Form: typeof import('./src/components/ui/form/index')['Form']
+  const FormControl: typeof import('./src/components/ui/form/index')['FormControl']
+  const FormDescription: typeof import('./src/components/ui/form/index')['FormDescription']
+  const FormField: typeof import('./src/components/ui/form/index')['FormField']
+  const FormItem: typeof import('./src/components/ui/form/index')['FormItem']
+  const FormLabel: typeof import('./src/components/ui/form/index')['FormLabel']
+  const FormMessage: typeof import('./src/components/ui/form/index')['FormMessage']
+  const Input: typeof import('./src/components/ui/input/index')['Input']
+  const Label: typeof import('./src/components/ui/label/index')['Label']
+  const PasswordInput: typeof import('./src/components/ui/password-input/index')['PasswordInput']
+  const Select: typeof import('./src/components/ui/select/index')['Select']
+  const SelectContent: typeof import('./src/components/ui/select/index')['SelectContent']
+  const SelectGroup: typeof import('./src/components/ui/select/index')['SelectGroup']
+  const SelectItem: typeof import('./src/components/ui/select/index')['SelectItem']
+  const SelectItemText: typeof import('./src/components/ui/select/index')['SelectItemText']
+  const SelectLabel: typeof import('./src/components/ui/select/index')['SelectLabel']
+  const SelectScrollDownButton: typeof import('./src/components/ui/select/index')['SelectScrollDownButton']
+  const SelectScrollUpButton: typeof import('./src/components/ui/select/index')['SelectScrollUpButton']
+  const SelectSeparator: typeof import('./src/components/ui/select/index')['SelectSeparator']
+  const SelectTrigger: typeof import('./src/components/ui/select/index')['SelectTrigger']
+  const SelectValue: typeof import('./src/components/ui/select/index')['SelectValue']
+  const Toast: typeof import('./src/components/ui/toast/index')['Toast']
+  const ToastAction: typeof import('./src/components/ui/toast/index')['ToastAction']
+  const ToastClose: typeof import('./src/components/ui/toast/index')['ToastClose']
+  const ToastDescription: typeof import('./src/components/ui/toast/index')['ToastDescription']
+  const ToastProvider: typeof import('./src/components/ui/toast/index')['ToastProvider']
+  const ToastTitle: typeof import('./src/components/ui/toast/index')['ToastTitle']
+  const ToastViewport: typeof import('./src/components/ui/toast/index')['ToastViewport']
+  const Toaster: typeof import('./src/components/ui/toast/index')['Toaster']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const buttonVariants: typeof import('./src/components/ui/button/index')['buttonVariants']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -90,6 +122,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const sampleData: typeof import('./src/data/sampleData')['default']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -103,6 +136,8 @@ declare global {
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('vue')['toValue']
+  const toast: typeof import('./src/components/ui/toast/use-toast')['toast']
+  const toastVariants: typeof import('./src/components/ui/toast/index')['toastVariants']
   const toggleDark: typeof import('./src/composables/dark')['toggleDark']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
@@ -177,6 +212,7 @@ declare global {
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
+  const useFormField: typeof import('./src/components/ui/form/useFormField')['useFormField']
   const useFps: typeof import('@vueuse/core')['useFps']
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
@@ -193,6 +229,7 @@ declare global {
   const useLink: typeof import('vue-router/auto')['useLink']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
+  const useMainPageStore: typeof import('./src/stores/main')['useMainPageStore']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']
   const useMediaQuery: typeof import('@vueuse/core')['useMediaQuery']
@@ -264,6 +301,7 @@ declare global {
   const useTitle: typeof import('@vueuse/core')['useTitle']
   const useToNumber: typeof import('@vueuse/core')['useToNumber']
   const useToString: typeof import('@vueuse/core')['useToString']
+  const useToast: typeof import('./src/components/ui/toast/use-toast')['useToast']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
@@ -302,6 +340,15 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { ButtonVariants } from './src/components/ui/button/index'
+  import('./src/components/ui/button/index')
+  // @ts-ignore
+  export type { ToastProps } from './src/components/ui/toast/index'
+  import('./src/components/ui/toast/index')
+  // @ts-ignore
+  export type { StringOrVNode } from './src/components/ui/toast/use-toast'
+  import('./src/components/ui/toast/use-toast')
 }
 
 // for vue template auto import
@@ -309,9 +356,41 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly Button: UnwrapRef<typeof import('./src/components/ui/button/index')['Button']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly FORM_ITEM_INJECTION_KEY: UnwrapRef<typeof import('./src/components/ui/form/injectionKeys')['FORM_ITEM_INJECTION_KEY']>
+    readonly Form: UnwrapRef<typeof import('./src/components/ui/form/index')['Form']>
+    readonly FormControl: UnwrapRef<typeof import('./src/components/ui/form/index')['FormControl']>
+    readonly FormDescription: UnwrapRef<typeof import('./src/components/ui/form/index')['FormDescription']>
+    readonly FormField: UnwrapRef<typeof import('./src/components/ui/form/index')['FormField']>
+    readonly FormItem: UnwrapRef<typeof import('./src/components/ui/form/index')['FormItem']>
+    readonly FormLabel: UnwrapRef<typeof import('./src/components/ui/form/index')['FormLabel']>
+    readonly FormMessage: UnwrapRef<typeof import('./src/components/ui/form/index')['FormMessage']>
+    readonly Input: UnwrapRef<typeof import('./src/components/ui/input/index')['Input']>
+    readonly Label: UnwrapRef<typeof import('./src/components/ui/label/index')['Label']>
+    readonly PasswordInput: UnwrapRef<typeof import('./src/components/ui/password-input/index')['PasswordInput']>
+    readonly Select: UnwrapRef<typeof import('./src/components/ui/select/index')['Select']>
+    readonly SelectContent: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectContent']>
+    readonly SelectGroup: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectGroup']>
+    readonly SelectItem: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectItem']>
+    readonly SelectItemText: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectItemText']>
+    readonly SelectLabel: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectLabel']>
+    readonly SelectScrollDownButton: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectScrollDownButton']>
+    readonly SelectScrollUpButton: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectScrollUpButton']>
+    readonly SelectSeparator: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectSeparator']>
+    readonly SelectTrigger: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectTrigger']>
+    readonly SelectValue: UnwrapRef<typeof import('./src/components/ui/select/index')['SelectValue']>
+    readonly Toast: UnwrapRef<typeof import('./src/components/ui/toast/index')['Toast']>
+    readonly ToastAction: UnwrapRef<typeof import('./src/components/ui/toast/index')['ToastAction']>
+    readonly ToastClose: UnwrapRef<typeof import('./src/components/ui/toast/index')['ToastClose']>
+    readonly ToastDescription: UnwrapRef<typeof import('./src/components/ui/toast/index')['ToastDescription']>
+    readonly ToastProvider: UnwrapRef<typeof import('./src/components/ui/toast/index')['ToastProvider']>
+    readonly ToastTitle: UnwrapRef<typeof import('./src/components/ui/toast/index')['ToastTitle']>
+    readonly ToastViewport: UnwrapRef<typeof import('./src/components/ui/toast/index')['ToastViewport']>
+    readonly Toaster: UnwrapRef<typeof import('./src/components/ui/toast/index')['Toaster']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly buttonVariants: UnwrapRef<typeof import('./src/components/ui/button/index')['buttonVariants']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -390,6 +469,7 @@ declare module 'vue' {
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
+    readonly sampleData: UnwrapRef<typeof import('./src/data/sampleData')['default']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
@@ -403,6 +483,8 @@ declare module 'vue' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
+    readonly toast: UnwrapRef<typeof import('./src/components/ui/toast/use-toast')['toast']>
+    readonly toastVariants: UnwrapRef<typeof import('./src/components/ui/toast/index')['toastVariants']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -476,6 +558,7 @@ declare module 'vue' {
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
+    readonly useFormField: UnwrapRef<typeof import('./src/components/ui/form/useFormField')['useFormField']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
@@ -492,6 +575,7 @@ declare module 'vue' {
     readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
+    readonly useMainPageStore: UnwrapRef<typeof import('./src/stores/main')['useMainPageStore']>
     readonly useManualRefHistory: UnwrapRef<typeof import('@vueuse/core')['useManualRefHistory']>
     readonly useMediaControls: UnwrapRef<typeof import('@vueuse/core')['useMediaControls']>
     readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
@@ -563,6 +647,7 @@ declare module 'vue' {
     readonly useTitle: UnwrapRef<typeof import('@vueuse/core')['useTitle']>
     readonly useToNumber: UnwrapRef<typeof import('@vueuse/core')['useToNumber']>
     readonly useToString: UnwrapRef<typeof import('@vueuse/core')['useToString']>
+    readonly useToast: UnwrapRef<typeof import('./src/components/ui/toast/use-toast')['useToast']>
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>

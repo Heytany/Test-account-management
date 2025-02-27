@@ -1,27 +1,11 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { PasswordInput } from '@/components/ui/password-input'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { useToast } from '@/components/ui/toast/use-toast'
-
 import { useMainPageStore } from '@/stores/main'
 import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
+import { Field as FormField, useForm } from 'vee-validate'
+
 import { h } from 'vue'
+
 import * as z from 'zod'
 
 const props = withDefaults(defineProps<Props>(), {
@@ -32,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits({
-  delete(payload: string) {
+  delete(payload: string | undefined) {
     return payload
   },
   new: null,
@@ -81,12 +65,12 @@ setFieldValue('password', props.item.password)
 setFieldValue('type', props.item.type)
 hidePassword.value = props.item.type !== savedType
 setFieldValue('tags', props.item.tags?.length
-  ? `${props.item.tags.map((tag: Tag) => {
+  ? `${(props.item.tags as Tag[]).map((tag: Tag) => {
     return tag.text
   }).join('; ')};`
   : '')
 
-const onSubmit = handleSubmit((values: Account) => {
+const onSubmit = handleSubmit((values: any) => {
   let id = props.item.id
   const buffer = structuredClone(values)
 
@@ -101,7 +85,7 @@ const onSubmit = handleSubmit((values: Account) => {
 
   tagsBuffer = buffer.tags.split(';')
 
-  if (tagsBuffer.length) {
+  if (tagsBuffer?.length) {
     buffer.tags
     = tagsBuffer.flatMap((tag: string) => { return tag ? { text: tag } : [] })
   }
