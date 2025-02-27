@@ -32,7 +32,7 @@ interface Props {
 const { toast } = useToast()
 
 const zObj = z.object({
-  tags: z.string().min(3).max(50).optional(),
+  tags: z.string().max(50).optional(),
   login: z.string({
     required_error: 'Please fill out login field.',
   }).min(3).max(100),
@@ -43,7 +43,7 @@ const zObj = z.object({
 })
 
 const zObjLDAP = z.object({
-  tags: z.string().min(3).max(50).optional(),
+  tags: z.string().max(50).optional(),
   login: z.string({
     required_error: 'Please fill out login field.',
   }).min(3).max(100),
@@ -88,11 +88,10 @@ const onSubmit = handleSubmit((values: any) => {
 
   let tagsBuffer = structuredClone(buffer.tags)
 
-  tagsBuffer = buffer.tags.split(';')
-
   if (tagsBuffer?.length) {
+    tagsBuffer = buffer.tags.split(';')
     buffer.tags
-    = tagsBuffer.flatMap((tag: string) => { return tag ? { text: tag } : [] })
+    = tagsBuffer.flatMap((tag: string) => { return tag ? { text: tag.trim() } : [] })
   }
   else {
     buffer.tags = ''

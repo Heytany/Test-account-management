@@ -33,15 +33,16 @@ function RenderNewAccAdding() {
       <i class="font-semibold not-italic text-base">💡</i> Для указания нескольких меток для одной пары логин/пароль используйте разделитель ";"
     </p>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3">
+    <TransitionGroup tag="div" name="fade" class="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3">
       <AccountForm v-for="(account, index) in main.accounts" :key="index" :item="account" @delete="useMainPageStore().deleteAccount" />
-
-      <div v-if="isRenderNewAccAdding" class="relative">
-        <Button variant="outline" class="px-2 absolute top-0 right-0" @click="isRenderNewAccAdding = false">
-          <i class="font-semibold not-italic text-base">➖</i>
-        </Button>
-        <AccountForm @delete="useMainPageStore().deleteAccount" @new="isRenderNewAccAdding = false" />
+      <div v-if="isRenderNewAccAdding">
+        <div class="relative">
+          <Button variant="outline" class="px-2 absolute top-0 right-0" @click="isRenderNewAccAdding = false">
+            <i class="font-semibold not-italic text-base">➖</i>
+          </Button>
+          <AccountForm @delete="useMainPageStore().deleteAccount" @new="isRenderNewAccAdding = false" />
+        </div>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
