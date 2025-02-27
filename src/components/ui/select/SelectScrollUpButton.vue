@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { SelectScrollUpButtonProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
+import { useForwardProps } from '@/lib/useForward'
 import { cn } from '@/lib/utils'
 import { ChevronUp } from 'lucide-vue-next'
-import { SelectScrollUpButton, useForwardProps } from 'reka-ui'
+import { SelectScrollUpButton } from 'reka-ui'
 import { computed } from 'vue'
 
 const props = defineProps<SelectScrollUpButtonProps & { class?: HTMLAttributes['class'] }>()

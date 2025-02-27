@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import type { SelectContentEmits, SelectContentProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
+import { useForwardPropsEmits } from '@/lib/useForward'
 import { cn } from '@/lib/utils'
 import {
   SelectContent,
-
   SelectPortal,
   SelectViewport,
-  useForwardPropsEmits,
 } from 'reka-ui'
 import { computed } from 'vue'
 

@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
+import { useForwardPropsEmits } from '@/lib/useForward'
 import { useVModel } from '@vueuse/core'
 import { Eye, EyeOff } from 'lucide-vue-next'
-import { useForwardPropsEmits } from 'radix-vue'
 import { ref } from 'vue'
-
 import { Button } from '../button'
 import { Input } from '../input'
 

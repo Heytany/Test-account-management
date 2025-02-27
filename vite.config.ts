@@ -10,6 +10,10 @@ import VueRouter from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
+  build: {
+    sourcemap: true,
+    minify: false,
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { ToastRootEmits } from 'reka-ui'
 import type { ToastProps } from '.'
+import { useForwardPropsEmits } from '@/lib/useForward'
 import { cn } from '@/lib/utils'
-import { ToastRoot, useForwardPropsEmits } from 'reka-ui'
+import { ToastRoot } from 'reka-ui'
 import { computed } from 'vue'
 import { toastVariants } from '.'
 
