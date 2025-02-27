@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   item: () => {
     return { id: '', login: '', password: '', tags: '', type: '' }
   },
+  handler: 'LDAP',
 })
 
 const emit = defineEmits({
@@ -22,11 +23,10 @@ const emit = defineEmits({
   new: null,
 })
 
-const savedType = 'LDAP'
-
 interface Props {
   types?: Array<TypeItem>
   item?: Account
+  handler?: string
 }
 
 const { toast } = useToast()
@@ -48,7 +48,7 @@ const zObjLDAP = z.object({
     required_error: 'Please fill out login field.',
   }).min(3).max(100),
   password: z.string().min(3).max(100).optional().nullable(),
-  type: z.literal(savedType, {
+  type: z.literal(props.handler, {
     errorMap: () => ({ message: 'You must enter password field to continue' }),
   }),
 })
@@ -60,15 +60,20 @@ const { isFieldDirty, handleSubmit, setFieldValue, validate } = useForm({
   validationSchema: formSchema,
 })
 
-setFieldValue('login', props.item.login)
-setFieldValue('password', props.item.password)
-setFieldValue('type', props.item.type)
-hidePassword.value = props.item.type !== savedType
-setFieldValue('tags', props.item.tags?.length
-  ? `${(props.item.tags as Tag[]).map((tag: Tag) => {
-    return tag.text
-  }).join('; ')};`
-  : '')
+watch(() => props.item, () => {
+  setFieldValue('login', props.item.login)
+  setFieldValue('password', props.item.password)
+  setFieldValue('type', props.item.type)
+  hidePassword.value = props.item.type !== props.handler
+  const tagText = props.item.tags?.length
+    ? `${(props.item.tags as Tag[]).map((tag: Tag) => {
+      return tag.text
+    }).join('; ')};`
+    : ''
+  if (tagText) {
+    setFieldValue('tags', tagText)
+  }
+}, { immediate: true })
 
 const onSubmit = handleSubmit((values: any) => {
   let id = props.item.id
@@ -93,7 +98,7 @@ const onSubmit = handleSubmit((values: any) => {
     buffer.tags = ''
   }
 
-  if (buffer.type === savedType) {
+  if (buffer.type === props.handler) {
     buffer.password = null
   }
 
@@ -114,7 +119,7 @@ async function startSubmit() {
 }
 
 function handleValue(value: any) {
-  hidePassword.value = value !== savedType
+  hidePassword.value = value !== props.handler
   startSubmit()
 }
 </script>

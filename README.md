@@ -3,7 +3,7 @@
 </p>
 
 <h6 align='center'>
-<a href="https://vitesse-lite.netlify.app/">Live Demo of account management Vitesse + Reka UI</a>
+<a href="https://saasoft-adventure.netlify.app/">Live Demo of account management Vitesse + Reka UI</a>
 </h6>
 
 <h5 align='center'>
