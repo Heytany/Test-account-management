@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits({
-  delete(payload: string | undefined) {
+  delete(payload: string) {
     return payload
   },
   new: null,
@@ -101,7 +101,7 @@ const onSubmit = handleSubmit((values: any) => {
     buffer.password = null
   }
 
-  useMainPageStore().saveOrAddAccount(buffer)
+  useMainPageStore().manageAccountData(buffer)
 
   toast({
     title: 'You saved the following account data:',

@@ -11,15 +11,23 @@ export const useMainPageStore = defineStore('main-page', () => {
     }
   }
 
-  function saveOrAddAccount(payload: Account) {
+  function manageAccountData(payload: Account) {
     const index = accounts.value.findIndex((account: Account) => account.id === payload?.id)
 
     if (index !== -1) {
-      accounts.value.splice(index, 1, payload)
+      saveAccount(index, payload)
     }
     else {
-      accounts.value.splice(accounts.value.length, 0, payload)
+      addAccount(payload)
     }
+  }
+
+  function saveAccount(index: number, payload: Account) {
+    accounts.value.splice(index, 1, payload)
+  }
+
+  function addAccount(payload: Account) {
+    accounts.value.splice(accounts.value.length, 0, payload)
   }
 
   function deleteAccount(payload: string) {
@@ -37,7 +45,7 @@ export const useMainPageStore = defineStore('main-page', () => {
 
   return {
     initMainPage,
-    saveOrAddAccount,
+    manageAccountData,
     deleteAccount,
     accounts,
   }

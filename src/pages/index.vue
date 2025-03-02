@@ -34,13 +34,13 @@ function RenderNewAccAdding() {
     </p>
 
     <TransitionGroup tag="div" name="fade" class="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-3">
-      <AccountForm v-for="(account, index) in main.accounts" :key="index" :item="account" @delete="useMainPageStore().deleteAccount" />
+      <AccountForm v-for="(account, index) in main.accounts" :key="index" :item="account" @delete="main.deleteAccount" />
       <div v-if="isRenderNewAccAdding">
         <div class="relative">
           <Button variant="outline" class="px-2 absolute top-0 right-0" @click="isRenderNewAccAdding = false">
             <i class="font-semibold not-italic text-base">➖</i>
           </Button>
-          <AccountForm @delete="useMainPageStore().deleteAccount" @new="isRenderNewAccAdding = false" />
+          <AccountForm @delete="main.deleteAccount" @new="isRenderNewAccAdding = false" />
         </div>
       </div>
     </TransitionGroup>
